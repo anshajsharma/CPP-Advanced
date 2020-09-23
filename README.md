@@ -36,6 +36,12 @@
 |23  | [Lambdas](#lambdas) |
 |24  | [Threads](#threads) |
 |25  | [Timings](#timings) |
+|26  | [Encapsulation](#encapsulation) |
+|27  | [Polymorphism](#polymorphism) |
+|28  | [`final` keyword](#final-keyword) |
+|29  | [Abstraction](#abstraction) |
+|30  | [Anonymous Object](#anonymous-object) |
+|30  | [Singelton Class](#singelton-class) |
 
 
  #### Refer [CPPReference](https://en.cppreference.com/w/) for more. ####
@@ -1198,6 +1204,269 @@ int main()
 // Timer tooks 39.1761ms
 ```
 
+**[⬆ Back to Top](#----c-advanced-)**
+
+# Encapsulation
+
+* Variable value should be changed using methods.  
+* Getters & Setters should be used to change variable values.
+* Variables should be private(i.e Class-bound).
+* Methods should be public.
+```Java
+public class Person {
+  private String name; // private = restricted access
+
+  // Getter
+  public String getName() {
+    return name;
+  }
+
+  // Setter
+  public void setName(String newName) {
+    this.name = newName;
+  }
+}
+```
 
 **[⬆ Back to Top](#----c-advanced-)**
 
+# Polymorphism  
+
+![Polymorphism](https://github.com/anshajsharma/C-Advanced/blob/master/Data/Polymorphism.png)
+
+* Polymorphism is the capability of a method to do different things based on the object that it is acting upon.
+* There are two types of polymorphism.
+  * __Method Overloading__ - Method name is same but call is done based on parameters.
+  * __Method Overriding__ - Method name is same in parent and child class but call is done on th basis of object instantiation.
+* __Dynamic Method Dispatch__ - Which method to call at runtime. It only depends on object type. Also known as runtime polymorphism.
+```Java
+//Method Overloading
+
+class OverloadingExample{  
+static int add(int a,int b){
+return a+b;
+}  
+static int add(int a,int b,int c){
+return a+b+c;
+}  
+}  
+
+//Method Overriding
+
+class Animal{  
+void eat(){System.out.println("eating...");}  
+}  
+class Dog extends Animal{  
+void eat(){System.out.println("eating bread...");}  
+}  
+
+//Dynamic Method Dispatch
+
+class Game
+{
+ 	public void type()
+ 	{  
+ 		System.out.println("Indoor & outdoor"); 
+ 	}
+}
+
+Class Cricket extends Game
+{
+ 	public void type()
+ 	{  
+ 		System.out.println("outdoor game"); 
+	}
+
+ 	public static void main(String[] args)
+ 	{
+   		Game gm = new Game();
+   		Cricket ck = new Cricket();
+   		gm.type();
+   		ck.type();
+   		gm = ck;	//gm refers to Cricket object
+   		gm.type();	//calls Cricket's version of type
+ 	}
+}
+```
+  
+**[⬆ Back to Top](#----c-advanced-)**
+
+# `final` keyword
+
+* Value once assigned to a final variable cannot be changed.
+* Final method can't be overridden.
+* Final method can't be extended.
+```Java
+class Bike9{  
+ final int speedlimit=90;//final variable  
+ final int another;
+ another = 100;		//correct as it can be initialised once
+ void run(){  
+  speedlimit=400;  //error as final variable can't be changed
+ }  
+ }
+ 
+ public static void main(String args[]){  
+ Bike9 obj=new  Bike9();  
+ obj.run();  
+ }  
+}//end of class 
+```
+**[⬆ Back to Top](#----c-advanced-)**
+
+# Abstraction
+
+* Data abstraction is the process of hiding certain details and showing only essential information to the user.
+* Object of abstract class can't be created.
+* Abstract method require abstract class but opposite is not necessary.
+* Abstract class can be used as a base for subclasses(i.e Which methods to implement in project).
+* Abstract class can also be used for base class for classes having same methods.
+```Java
+abstract class Bike{  
+  abstract void run();	//advanced declaration of method which can be defined later  
+}  
+
+class Honda4 extends Bike{  
+void run(){System.out.println("running safely");
+}
+
+public static void main(String args[]){  
+ Bike obj = new Honda4();  
+ obj.run();  
+}  
+
+//Another example
+
+abstract Class Phone{
+abstract void call();
+abstract void camera();
+}
+
+Class Samsung extends Phone {
+void call(){
+System.out.println("Call from samsung");
+}
+void camera(){
+System.out.println("Camera samsung");
+}
+}
+
+Class Iphone extends Phone {
+void call(){
+System.out.println("Call from iphone");
+}
+void camera(){
+System.out.println("Camera iphone");
+}
+}
+
+Class Shop{
+ void repair(Phone p){
+ //Some code
+ }
+}
+
+public static void main(String args[]){  
+ Shop work = new Shop();
+ work.repair(new Iphone());
+ work.repair(new Samsung());
+}  
+```
+**[⬆ Back to Top](#----c-advanced-)**
+
+# Anonymous Object
+
+* No Stack memory is consumed.
+* Eligible for Garbage Collection after it is executed.
+* Can't be used multiple times because everytime it is called, new memory is allocated in heap so value resets.
+```Java
+public class Tester {
+   public String message(){
+      return "Hello World!";
+   }
+   
+   public static void main(String[] args) {
+      System.out.println(new Tester().message());
+   }
+ }
+```
+
+**[⬆ Back to Top](#----c-advanced-)**
+
+
+# Singelton Class
+
+In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
+After first time, if we try to instantiate the Singleton class, the new variable also points to the first instance created.
+
+```Java
+// Java program implementing Singleton class 
+// with getInstance() method 
+class Singleton 
+{ 
+    // static variable single_instance of type Singleton 
+    private static Singleton single_instance = null; 
+  
+    // variable of type String 
+    public String s; 
+  
+    // private constructor restricted to this class itself 
+    private Singleton() 
+    { 
+        s = "Hello I am a string part of Singleton class"; 
+    } 
+  
+    // static method to create instance of Singleton class 
+    public static Singleton getInstance() 
+    { 
+        if (single_instance == null) 
+            single_instance = new Singleton(); 
+  
+        return single_instance; 
+    } 
+} 
+  
+// Driver Class 
+class Main 
+{ 
+    public static void main(String args[]) 
+    { 
+        // instantiating Singleton class with variable x 
+        Singleton x = Singleton.getInstance(); 
+  
+        // instantiating Singleton class with variable y 
+        Singleton y = Singleton.getInstance(); 
+  
+        // instantiating Singleton class with variable z 
+        Singleton z = Singleton.getInstance(); 
+  
+        // changing variable of instance x 
+        x.s = (x.s).toUpperCase(); 
+  
+        System.out.println("String from x is " + x.s); 
+        System.out.println("String from y is " + y.s); 
+        System.out.println("String from z is " + z.s); 
+        System.out.println("\n"); 
+  
+        // changing variable of instance z 
+        z.s = (z.s).toLowerCase(); 
+  
+        System.out.println("String from x is " + x.s); 
+        System.out.println("String from y is " + y.s); 
+        System.out.println("String from z is " + z.s); 
+    } 
+} 
+
+// Output:
+
+// String from x is HELLO I AM A STRING PART OF SINGLETON CLASS
+// String from y is HELLO I AM A STRING PART OF SINGLETON CLASS
+// String from z is HELLO I AM A STRING PART OF SINGLETON CLASS
+
+
+// String from x is hello i am a string part of singleton class
+// String from y is hello i am a string part of singleton class
+// String from z is hello i am a string part of singleton class
+```
+
+**[⬆ Back to Top](#----c-advanced-)**
