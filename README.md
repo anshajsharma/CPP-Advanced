@@ -41,7 +41,7 @@
 |28  | [`final` keyword](#final-keyword) |
 |29  | [Abstraction](#abstraction) |
 |30  | [Anonymous Object](#anonymous-object) |
-|30  | [Singelton Class](#singelton-class) |
+|31  | [Singelton Class](#singelton-class) |
 
 
  #### Refer [CPPReference](https://en.cppreference.com/w/) for more. ####
