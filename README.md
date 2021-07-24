@@ -1475,3 +1475,6 @@ class Main
 # Vptr and Vtable Class
 
 ![image](https://user-images.githubusercontent.com/55790104/126877896-88e343d5-57bc-432c-a29a-32788b1edc4e.png)
+
+**[⬆ Back to Top](#----c-advanced-)**
+
