@@ -42,6 +42,7 @@
 |29  | [Abstraction](#abstraction) |
 |30  | [Anonymous Object](#anonymous-object) |
 |31  | [Singelton Class](#singelton-class) |
+|32  | [Vptr and Vtable Class](#vptr-and-vtable-class) |
 
 
  #### Refer [CPPReference](https://en.cppreference.com/w/) for more. ####
@@ -1470,3 +1471,7 @@ class Main
 ```
 
 **[⬆ Back to Top](#----c-advanced-)**
+
+# Vptr and Vtable Class
+
+![image](https://user-images.githubusercontent.com/55790104/126877896-88e343d5-57bc-432c-a29a-32788b1edc4e.png)
